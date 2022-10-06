@@ -1,0 +1,13 @@
+services:
+  prom:
+    image: prom/prometheus:v2.39.0
+    ports: [ "9090:9090" ]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prom:/prometheus
+  ping:
+    image: czerwonk/ping_exporter:v1.0.0
+    volumes:
+      - ./ping-exporter.yml:/config/config.yml
+    environment:
+      CMD_FLAGS: ""
